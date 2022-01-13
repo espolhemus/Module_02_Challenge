@@ -84,7 +84,7 @@ Multiple approaches were utilized while attempting to refactor the original code
 
 **Attempt B**
 
-'Activate Data Worksheet
+    'Activate Data Worksheet
     Worksheets(yearValue).Activate
     
     'Get Number of Rows to Loop Through
