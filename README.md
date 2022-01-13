@@ -11,12 +11,13 @@ The purpose of this challenge is to provide the end user with the total number o
 The overwhelming majority of the stocks included in this analysis performed significantly better in 2017 than in 2018; for 2017, only one stock (TERP) failed to appreciate in value over the course of the year, while in 2018, only two stocks (RUN and ENPH) appreciated in value, with each of the other stocks we analyzed finishing the year well below their per-share price to begin the year.     
 
 ### Tables Detailing Annualized Performance
+
 ![2017](VBA_Challenge_2017.png)
 
 ![2018](VBA_Challenge_2018.png)
 
 ## Refactoring Code
-As part of this assignment, the code that was originally written earlier in the module was refactored in an attempt to improve performance; the primary change in approach related to the use of addiitional arrays to store values for tickers, tickerVolumes, tickerStartingPrices and tickerEndingPrices.
+As part of this assignment, the code that was originally written earlier in the module was refactored in an attempt to improve performance; the primary change in approach related to the use of additional arrays to store values for tickers, tickerVolumes, tickerStartingPrices and tickerEndingPrices.
 
 ### Original Code - green_stocks.xslm
     'Create Variables for Starting and Ending Prices
@@ -45,7 +46,7 @@ As part of this assignment, the code that was originally written earlier in the 
         For j = 2 To RowCount
 
 ### Refactored Code
-Multiple approaches were utilized while attempting to refactor the original code - the primary difference between the two approaches is in the iterator that is utilized to loop through each of the '''tickers''' - Approach A utilizes i as an iterator to control the loop, whereas Approach B uses 
+Multiple approaches were utilized while attempting to refactor the original code - the primary difference between the two approaches is in the iterator that is utilized to loop through each of the tickers - Approach A utilizes i as an iterator to control the loop, whereas Approach B uses the existing tickerIndex variable to control the loop. 
 
 **Attempt A**
 
@@ -115,17 +116,20 @@ Multiple approaches were utilized while attempting to refactor the original code
                 tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(j, 8).Value
                End If
                
+## Discussion of Refactoring Code
+Refactoring existing code has obvious advantages - not only does it provide you with the opportunity to attempt to optimize and simplify your code - ensuring that your code is as clear, concise, and elegant as possible - but it also provides you with yet another opportunity to validate the accuracy of the work that you have already done by confirming that you can employ a slightly different approach while still yielding the same results.
 
-### Analysis of Outcomes Based on Goals
 
-### Challenges and Difficulties Encountered
+### Table Detailing Refactored Code Performance
+In this instance, the difference in performance between the three iterations of code was negligible, as shown in the following table:
 
-## Results
+![Code Performance](Performance_Table.png)
 
-- What are two conclusions you can draw about the Outcomes based on Launch Date
+In addition, it appears that Refactored Code A performed best when analyzing the data for 2017, but performed worse than either the original code or Refactored Code B when analyzing data for 2018; likewise, Refactored Code B performed best when analyzing the data for 2018, yet was the worst-performing code with respect to analyzing data from 2017.
 
-- What can you conclude about the Outcomes based on Goals?
+However, given the limited number of tests run, and the relatively unscientific approach taken in testing (i.e. other applications were allowed to continue running in the background, etc.), I would avoid drawing too many conclusions from this performance data, and no effort has been put into attempting to understand why Refactored Code A performed better in certain instances, while Refactored Code B was superior in other instances.
 
-- What are some limitations of this dataset?
+Given that the performance data is inconclusive and contradictory, I would be comfortable using either of the versions of Refactored Code; for purposes of this Challenge, I have submitted Refactored Code B, as I believe it to be a more streamlined, simplified, and elegant version due to its use of the tickerIndex to control looping, rather than using a separate iterator specifically for that purpose.
 
-- What are some other possible tables and/or graphs that we could create?
+## Limitations
+There are several known limitations with respect to this Challenge: the calculation of performance data assumes that the data is properly sorted in chronological order from oldest to newest, as the code assigns the tickerStartingPrices and tickerEndingPrices to the first and last row associated with each ticker, without confirming that those are in fact the oldest and most recent prices for a particular stock in a given year.  In addition, no attempt was made to validate or control the Year input by the user when the code is executed.
