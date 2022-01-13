@@ -19,7 +19,6 @@ The overwhelming majority of the stocks included in this analysis performed sign
 As part of this assignment, the code that was originally written earlier in the module was refactored in an attempt to improve performance; the primary change in approach related to the use of addiitional arrays to store values for tickers, tickerVolumes, tickerStartingPrices and tickerEndingPrices
 
 ### Original Code - green_stocks.xslm
-'''
     'Create Variables for Starting and Ending Prices
     Dim startingPrice As Single
     Dim endingPrice As Single
@@ -44,7 +43,6 @@ As part of this assignment, the code that was originally written earlier in the 
                 
         'Loop Through Rows in Data
         For j = 2 To RowCount
-'''
 ### Analysis of Outcomes Based on Goals
 
 ### Challenges and Difficulties Encountered
