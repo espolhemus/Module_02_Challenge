@@ -16,7 +16,7 @@ The overwhelming majority of the stocks included in this analysis performed sign
 ![2018](VBA_Challenge_2018.png)
 
 ## Refactoring Code
-As part of this assignment, the code that was originally written earlier in the module was refactored in an attempt to improve performance; the primary change in approach related to the use of addiitional arrays to store values for tickers, tickerVolumes, tickerStartingPrices and tickerEndingPrices
+As part of this assignment, the code that was originally written earlier in the module was refactored in an attempt to improve performance; the primary change in approach related to the use of addiitional arrays to store values for tickers, tickerVolumes, tickerStartingPrices and tickerEndingPrices.
 
 ### Original Code - green_stocks.xslm
     'Create Variables for Starting and Ending Prices
@@ -43,6 +43,79 @@ As part of this assignment, the code that was originally written earlier in the 
                 
         'Loop Through Rows in Data
         For j = 2 To RowCount
+
+### Refactored Code
+Multiple approaches were utilized while attempting to refactor the original code - the primary difference between the two approaches is in the iterator that is utilized to loop through each of the '''tickers''' - Approach A utilizes i as an iterator to control the loop, whereas Approach B uses 
+
+**Attempt A**
+
+'Activate Data Worksheet
+    Worksheets(yearValue).Activate
+    
+    'Get Number of Rows to Loop Through
+    RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    
+    'Create tickerIndex
+    Dim tickerIndex As Integer
+    
+    'Create Output Arrays
+    Dim tickerVolumes(12) As Long
+    Dim tickerStartingPrices(12) As Single
+    Dim tickerEndingPrices(12) As Single
+      
+    'Loop Through Tickers
+    
+    For i = 0 To 11
+       
+        ticker = tickers(tickerIndex)
+        tickerVolumes(tickerIndex) = 0
+        
+        'Activate Data Worksheet
+        Worksheets(yearValue).Activate
+                
+        'Loop Through Rows in Data
+        For j = 2 To RowCount
+        
+            'Find Total Volume for Current Ticker
+            If Cells(j, 1).Value = ticker Then
+                tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(j, 8).Value
+                'totalVolume = totalVolume + Cells(j, 8).Value
+            End If
+
+**Attempt B**
+
+'Activate Data Worksheet
+    Worksheets(yearValue).Activate
+    
+    'Get Number of Rows to Loop Through
+    RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    
+    'Create tickerIndex
+    Dim tickerIndex As Integer
+    
+    'Create Output Arrays
+    Dim tickerVolumes(12) As Long
+    Dim tickerStartingPrices(12) As Single
+    Dim tickerEndingPrices(12) As Single
+      
+    'Loop Through Tickers
+    For tickerIndex = 0 To 11
+    
+        ticker = tickers(tickerIndex)
+        tickerVolumes(tickerIndex) = 0
+        
+        'Activate Data Worksheet
+         Worksheets(yearValue).Activate
+                
+        'Loop Through Rows in Data
+        For j = 2 To RowCount
+        
+            'Find Total Volume for Current Ticker
+            If Cells(j, 1).Value = ticker Then
+                tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(j, 8).Value
+               End If
+               
+
 ### Analysis of Outcomes Based on Goals
 
 ### Challenges and Difficulties Encountered
